@@ -1,0 +1,325 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: echart助手
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - document
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+      number_limits: 1
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1742514849863-source-1742514915693-target
+      source: '1742514849863'
+      sourceHandle: source
+      target: '1742514915693'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1742514915693-source-1742514985717-target
+      source: '1742514915693'
+      sourceHandle: source
+      target: '1742514985717'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1742514985717-source-1742515095789-target
+      source: '1742514985717'
+      sourceHandle: source
+      target: '1742515095789'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: code
+      id: 1742515095789-source-1742515231528-target
+      source: '1742515095789'
+      sourceHandle: source
+      target: '1742515231528'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1742515231528-source-answer-target
+      source: '1742515231528'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          label: text
+          max_length: 5
+          options: []
+          required: true
+          type: file-list
+          variable: text
+      height: 80
+      id: '1742514849863'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1742514915693.text#}}
+
+
+          <br />
+
+
+          {{#1742515095789.csv_data#}}
+
+
+          <br />
+
+
+          {{#1742515231528.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 133
+      id: answer
+      position:
+        x: 1633.6968917576123
+        y: 255.1493054458233
+      positionAbsolute:
+        x: 1633.6968917576123
+        y: 255.1493054458233
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_array_file: true
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1742514849863'
+        - text
+      height: 86
+      id: '1742514915693'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-r1:8b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: fb83b2f8-8331-4c5d-86a7-c08da96bd7d0
+          role: system
+          text: '# 角色
+
+            你是一个数据整理专家，负责数据格式的整理和格式的转换。
+
+            # 数据
+
+            {{#1742514915693.text#}}
+
+            #任务
+
+            将数据转换成csv格式。'
+        selected: false
+        title: Excel转Csv
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 80
+      id: '1742514985717'
+      position:
+        x: 705.900463036118
+        y: 269.07188780724823
+      positionAbsolute:
+        x: 705.900463036118
+        y: 269.07188780724823
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: '# 任务
+
+          提取csv格式的字符串'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-r1:8b
+          provider: langgenius/ollama/ollama
+        parameters:
+        - description: csv_data
+          name: csv_data
+          required: false
+          type: string
+        query:
+        - '1742514985717'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 80
+      id: '1742515095789'
+      position:
+        x: 1009.900463036118
+        y: 269.07188780724823
+      positionAbsolute:
+        x: 1009.900463036118
+        y: 269.07188780724823
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import csv\nimport json\n\ndef main(csv_data):\n    # 解析CSV\n    reader\
+          \ = csv.DictReader(csv_data.strip().splitlines())\n    rows = list(reader)\n\
+          \    \n    # 自动识别列结构\n    headers = reader.fieldnames\n    if not headers\
+          \ or len(headers) < 2:\n        return {'output': 'Error: 需要至少两列数据（1个分类列+1个数值列）'}\n\
+          \    \n    # 默认第一列为分类轴，其余为数值列\n    category_col = headers[0]\n    value_columns\
+          \ = headers[1:]\n    \n    # 提取数据\n    categories = [row[category_col] for\
+          \ row in rows]\n    series_data = [\n        {\n            \"name\": col,\n\
+          \            \"type\": \"bar\",\n            \"data\": [float(row[col])\
+          \ for row in rows]  # 处理浮点数\n        } for col in value_columns\n    ]\n\
+          \    \n    # 构建ECharts配置\n    echarts_config = {\n        \"xAxis\": {\"\
+          type\": \"category\", \"data\": categories},\n        \"yAxis\": {\"type\"\
+          : \"value\"},\n        \"series\": series_data\n    }\n    \n    # 返回结果\n\
+          \    return {'output': f'```echarts\\n {json.dumps(echarts_config, indent=2,\
+          \ ensure_ascii=False)} \\n```'}\n\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          output:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1742515095789'
+          - csv_data
+          variable: csv_data
+      height: 48
+      id: '1742515231528'
+      position:
+        x: 1313.900463036118
+        y: 269.07188780724823
+      positionAbsolute:
+        x: 1313.900463036118
+        y: 269.07188780724823
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -1038.7698252253647
+      y: -6.201324688903867
+      zoom: 0.903783467792589
