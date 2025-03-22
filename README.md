@@ -41,7 +41,7 @@
     volumes:
       - ./markmap-flask-service/data:/app/data
     ports:
-      - 5003:5003
+      - 15003:15003
     networks:
       - ssrf_proxy_network
       - default
@@ -108,3 +108,6 @@
    - 把创建试卷工作流.yml创建出来的工作流发布为工具,名字设置为save_quiz_and_get_url，工具描述为"保存试卷并获取试卷url"
    - 在保存试卷agent.yml创建出的agent里删除旧工具，重新添加引用save_quiz_and_get_url工具
 ""
+
+https://github.com/BannyLon/DifyAIA/tree/main
+
