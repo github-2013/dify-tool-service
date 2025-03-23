@@ -109,5 +109,51 @@
    - 在保存试卷agent.yml创建出的agent里删除旧工具，重新添加引用save_quiz_and_get_url工具
 ""
 
+### 总结概括github项目
+1. 拷贝quiz-flask-service到dify的docker目录中
+2. 修改docker-compose.yaml文件，在services字段下新增一个marp-flask-service子级，具体配置如下。
+```yaml
+analysis-github-project:
+    build: ./dify-tool-service/analysis-github-project
+    container_name: analysis-github-project
+    restart: always
+```
+3. 执行docker compose up
+4. 在dify中导入创建试卷工作流.yml和保存试卷agent.yml
+   - 把创建试卷工作流.yml创建出来的工作流发布为工具,名字设置为save_quiz_and_get_url，工具描述为"保存试卷并获取试卷url"
+   - 在保存试卷agent.yml创建出的agent里删除旧工具，重新添加引用save_quiz_and_get_url工具
+
+# 生成excel
+```yaml
+excel-flask-service:
+    build: ./dify-tool-service/excel-flask-service
+    container_name: excel-flask-service
+    restart: always
+    volumes:
+      - ./dify-tool-service/excel-flask-service/data:/app/data
+    ports:
+      - 15009:15009
+    networks:
+      - ssrf_proxy_network
+      - default
+```
+
+# 生成word
+```yaml
+word-flask-service:
+    build: ./dify-tool-service/word-flask-service
+    container_name: word-flask-service
+    restart: always
+    volumes:
+      - ./dify-tool-service/word-flask-service/data:/app/data
+    ports:
+      - 15009:15009
+    networks:
+      - ssrf_proxy_network
+      - default
+```
+
+
+
 https://github.com/BannyLon/DifyAIA/tree/main
 
