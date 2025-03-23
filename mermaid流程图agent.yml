@@ -5,8 +5,13 @@ app:
   icon: 🤖
   icon_background: '#FFEAD5'
   mode: agent-chat
-  name: mermaid_agent
+  name: mermaid流程图agent
   use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
 kind: app
 model_config:
   agent_mode:
@@ -16,9 +21,8 @@ model_config:
     strategy: function_call
     tools:
     - enabled: true
-      isDeleted: false
       notAuthor: false
-      provider_id: a9bd80ee-e5f5-4a85-8868-813a0ff62666
+      provider_id: 81a833da-a808-4882-9c64-3ea31d2aee1f
       provider_name: mermaid作图工具
       provider_type: workflow
       tool_label: mermaid作图工具
@@ -32,10 +36,28 @@ model_config:
   dataset_configs:
     datasets:
       datasets: []
+    reranking_enable: false
     retrieval_model: multiple
+    top_k: 4
   dataset_query_variable: ''
   external_data_tools: []
   file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .MPGA
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
     image:
       detail: high
       enabled: false
@@ -43,18 +65,19 @@ model_config:
       transfer_methods:
       - remote_url
       - local_file
+    number_limits: 3
   model:
     completion_params:
       stop: []
     mode: chat
-    name: gpt-4o
-    provider: azure_openai
+    name: qwen2.5:7b
+    provider: langgenius/ollama/ollama
   more_like_this:
     enabled: false
   opening_statement: ''
-  pre_prompt: "参考资料：\"\"\"{{content}}\"\"\"\n你是一名智能助手\n你的任务是根据参考资料调用mermaid_service生成mermaid格式的内容并原样返回svg图片的预览链接\n\
-    例如:\n\"\"\"\ngraph\n   accTitle: My title here\n   accDescr: My description here\n\
-    \   A-->B\n\"\"\"\n"
+  pre_prompt: '
+
+    你是擅长mermaid相关格式md文件的专家，你的任务是根据用户要求生成mermaind支持的md内容，并调用mermaid_service保存并获取预览链接'
   prompt_type: simple
   retriever_resource:
     enabled: true
@@ -71,11 +94,5 @@ model_config:
     enabled: false
     language: ''
     voice: ''
-  user_input_form:
-  - paragraph:
-      default: ''
-      label: content
-      max_length: 5000
-      required: true
-      variable: content
-version: 0.1.2
+  user_input_form: []
+version: 0.1.5

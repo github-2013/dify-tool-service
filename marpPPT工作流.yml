@@ -3,21 +3,43 @@ app:
   icon: 🤖
   icon_background: '#FFEAD5'
   mode: workflow
-  name: 创建试卷工作流
+  name: marpPPT工作流
   use_icon_as_answer_icon: false
+dependencies: []
 kind: app
-version: 0.1.2
+version: 0.1.5
 workflow:
   conversation_variables: []
   environment_variables: []
   features:
     file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
       image:
         enabled: false
         number_limits: 3
         transfer_methods:
         - local_file
         - remote_url
+      number_limits: 3
     opening_statement: ''
     retriever_resource:
       enabled: true
@@ -38,10 +60,10 @@ workflow:
         isInIteration: false
         sourceType: start
         targetType: http-request
-      id: 1728707123057-source-1728707125708-target
-      source: '1728707123057'
+      id: 1728030320641-source-1728030322836-target
+      source: '1728030320641'
       sourceHandle: source
-      target: '1728707125708'
+      target: '1728030322836'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -49,10 +71,10 @@ workflow:
         isInIteration: false
         sourceType: http-request
         targetType: end
-      id: 1728707125708-source-1728707196584-target
-      source: '1728707125708'
+      id: 1728030322836-source-1728030383432-target
+      source: '1728030322836'
       sourceHandle: source
-      target: '1728707196584'
+      target: '1728030383432'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -69,8 +91,8 @@ workflow:
           required: true
           type: paragraph
           variable: content
-      height: 89
-      id: '1728707123057'
+      height: 80
+      id: '1728030320641'
       position:
         x: 80
         y: 282
@@ -87,30 +109,36 @@ workflow:
           config: null
           type: no-auth
         body:
-          data: '{{#1728707123057.content#}}'
+          data:
+          - type: text
+            value: '{{#1728030320641.content#}}'
           type: raw-text
         desc: ''
         headers: ''
         method: post
         params: ''
-        selected: false
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: true
         timeout:
           max_connect_timeout: 0
           max_read_timeout: 0
           max_write_timeout: 0
         title: HTTP 请求
         type: http-request
-        url: http://quiz-flask-service:5006/upload_markdown
+        url: http://marp-flask-service:15004/upload
         variables: []
-      height: 105
-      id: '1728707125708'
+      height: 125
+      id: '1728030322836'
       position:
         x: 384
         y: 282
       positionAbsolute:
         x: 384
         y: 282
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -119,26 +147,26 @@ workflow:
         desc: ''
         outputs:
         - value_selector:
-          - '1728707125708'
+          - '1728030322836'
           - body
           variable: body
         selected: false
         title: 结束
         type: end
-      height: 89
-      id: '1728707196584'
+      height: 80
+      id: '1728030383432'
       position:
         x: 688
         y: 282
       positionAbsolute:
         x: 688
         y: 282
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     viewport:
-      x: 39.5
-      y: 50
+      x: -264.5
+      y: 58
       zoom: 1

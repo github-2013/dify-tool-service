@@ -3,8 +3,13 @@ app:
   icon: 🤖
   icon_background: '#FFEAD5'
   mode: agent-chat
-  name: 保存试卷agent
+  name: 试卷agent
   use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
 kind: app
 model_config:
   agent_mode:
@@ -14,9 +19,8 @@ model_config:
     strategy: function_call
     tools:
     - enabled: true
-      isDeleted: false
       notAuthor: false
-      provider_id: 8d275586-f36d-4e6a-8051-7b218badc7d6
+      provider_id: c4f470b2-7eeb-4078-85ba-4380198633cb
       provider_name: 创建试卷工作流
       provider_type: workflow
       tool_label: 创建试卷工作流
@@ -30,10 +34,28 @@ model_config:
   dataset_configs:
     datasets:
       datasets: []
+    reranking_enable: false
     retrieval_model: multiple
+    top_k: 4
   dataset_query_variable: ''
   external_data_tools: []
   file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .MPGA
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
     image:
       detail: high
       enabled: false
@@ -41,12 +63,13 @@ model_config:
       transfer_methods:
       - remote_url
       - local_file
+    number_limits: 3
   model:
     completion_params:
       stop: []
     mode: chat
-    name: gpt-4o
-    provider: azure_openai
+    name: qwen2.5:7b
+    provider: langgenius/ollama/ollama
   more_like_this:
     enabled: false
   opening_statement: ''
@@ -82,4 +105,4 @@ model_config:
       max_length: 5000
       required: false
       variable: reference
-version: 0.1.2
+version: 0.1.5

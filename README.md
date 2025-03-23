@@ -89,7 +89,7 @@
 
 ### dify-quiz-flask-service 
 
-视频<a href="https://www.bilibili.com/video/BV12ZnRe5ERh" target="_blank">让AI给你出试卷-Dify实战：搭建自动生成试卷的Agent</a>相关代码
+视频<a href="https://www.youtube.com/watch?v=QFJLHTk-L08" target="_blank">让AI给你出试卷-Dify实战：搭建自动生成试卷的Agent</a>相关代码
 
 1. 拷贝quiz-flask-service到dify的docker目录中
 2. 修改docker-compose.yaml文件，在services字段下新增一个marp-flask-service子级，具体配置如下。

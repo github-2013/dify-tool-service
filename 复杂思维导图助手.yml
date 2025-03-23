@@ -1,0 +1,583 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 复杂思维导图助手
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1742693107047-source-1742693144905-target
+      source: '1742693107047'
+      sourceHandle: source
+      target: '1742693144905'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: http-request
+      id: 1742693144905-true-1742693152893-target
+      source: '1742693144905'
+      sourceHandle: 'true'
+      target: '1742693152893'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: document-extractor
+      id: 1742693144905-dde9f838-152d-44ae-a749-8115cb51c38e-1742693188672-target
+      source: '1742693144905'
+      sourceHandle: dde9f838-152d-44ae-a749-8115cb51c38e
+      target: '1742693188672'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742693144905-false-1742693191771-target
+      source: '1742693144905'
+      sourceHandle: 'false'
+      target: '1742693191771'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1742693152893-source-1742693213743-target
+      source: '1742693152893'
+      sourceHandle: source
+      target: '1742693213743'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1742693213743-source-1742693227228-target
+      source: '1742693213743'
+      sourceHandle: source
+      target: '1742693227228'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1742693188672-source-1742693251770-target
+      source: '1742693188672'
+      sourceHandle: source
+      target: '1742693251770'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1742693251770-source-1742693257670-target
+      source: '1742693251770'
+      sourceHandle: source
+      target: '1742693257670'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: http-request
+      id: 1742693257670-source-1742693271603-target
+      source: '1742693257670'
+      sourceHandle: source
+      target: '1742693271603'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1742693271603-source-1742693280195-target
+      source: '1742693271603'
+      sourceHandle: source
+      target: '1742693280195'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1742693280195-source-1742693285006-target
+      source: '1742693280195'
+      sourceHandle: source
+      target: '1742693285006'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1742693191771-source-1742693257670-target
+      source: '1742693191771'
+      sourceHandle: source
+      target: '1742693257670'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: file
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: file
+      height: 80
+      id: '1742693107047'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: f1cb9f29-4196-4bad-ab55-a2c646803a19
+            value: '1'
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        - case_id: dde9f838-152d-44ae-a749-8115cb51c38e
+          conditions:
+          - comparison_operator: is
+            id: 165c22ed-3517-4d2c-9d26-54bc9c6a8ee1
+            value: '2'
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: dde9f838-152d-44ae-a749-8115cb51c38e
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 153
+      id: '1742693144905'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - file:
+            - '1742693107047'
+            - file
+            id: key-value-137
+            key: markdownfile
+            type: file
+            value: /
+          type: form-data
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://markmap-flask-service:5003/upload
+        variables: []
+      height: 125
+      id: '1742693152893'
+      position:
+        x: 708
+        y: 161
+      positionAbsolute:
+        x: 708
+        y: 161
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1742693107047'
+        - file
+      height: 86
+      id: '1742693188672'
+      position:
+        x: 708
+        y: 330
+      positionAbsolute:
+        x: 708
+        y: 330
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 7b6cb4c6-2966-469a-bb3b-3b0f19919758
+          role: system
+          text: 请总结内容，总结内容要有层次，并以markdown格式输出，但不要写在```markdown```里面
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 80
+      id: '1742693191771'
+      position:
+        x: 708
+        y: 492
+      positionAbsolute:
+        x: 708
+        y: 492
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1: str) -> dict:\n    return {\n        \"result\": arg1,\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1742693152893'
+          - body
+          variable: arg1
+      height: 48
+      id: '1742693213743'
+      position:
+        x: 1012
+        y: 161
+      positionAbsolute:
+        x: 1012
+        y: 161
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1742693213743.result#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 97
+      id: '1742693227228'
+      position:
+        x: 1316
+        y: 161
+      positionAbsolute:
+        x: 1316
+        y: 161
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1742693188672'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: b5506fff-be63-4129-9511-89eeb1cd9f2c
+          role: system
+          text: 请总结上下文内容{{#context#}}，总结内容要有层次，并以markdown格式输出，但不要写在```markdown```里面
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 80
+      id: '1742693251770'
+      position:
+        x: 1012
+        y: 330
+      positionAbsolute:
+        x: 1012
+        y: 330
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '1742693251770'
+          - text
+        - - '1742693191771'
+          - text
+      height: 121
+      id: '1742693257670'
+      position:
+        x: 1316
+        y: 429
+      positionAbsolute:
+        x: 1316
+        y: 429
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-376
+            key: ''
+            type: text
+            value: '{{#1742693257670.output#}}'
+          type: raw-text
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求 2
+        type: http-request
+        url: http://markmap-flask-service:5003/upload
+        variables: []
+      height: 101
+      id: '1742693271603'
+      position:
+        x: 1620
+        y: 330
+      positionAbsolute:
+        x: 1620
+        y: 330
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1: str) -> dict:\n    return {\n        \"result\": arg1,\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1742693271603'
+          - body
+          variable: arg1
+      height: 48
+      id: '1742693280195'
+      position:
+        x: 1924
+        y: 330
+      positionAbsolute:
+        x: 1924
+        y: 330
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1742693280195.result#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 97
+      id: '1742693285006'
+      position:
+        x: 2228
+        y: 330
+      positionAbsolute:
+        x: 2228
+        y: 330
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -1986
+      y: -95
+      zoom: 1

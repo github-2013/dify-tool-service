@@ -3,21 +3,43 @@ app:
   icon: 🤖
   icon_background: '#FFEAD5'
   mode: workflow
-  name: mermaid作图工具
+  name: 思维导图工作流
   use_icon_as_answer_icon: false
+dependencies: []
 kind: app
-version: 0.1.2
+version: 0.1.5
 workflow:
   conversation_variables: []
   environment_variables: []
   features:
     file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
       image:
         enabled: false
         number_limits: 3
         transfer_methods:
         - local_file
         - remote_url
+      number_limits: 3
     opening_statement: ''
     retriever_resource:
       enabled: true
@@ -36,23 +58,25 @@ workflow:
     edges:
     - data:
         isInIteration: false
+        isInLoop: false
         sourceType: start
         targetType: http-request
-      id: 1727777089284-source-1727777093099-target
-      source: '1727777089284'
+      id: 1742655610698-source-1742655632996-target
+      source: '1742655610698'
       sourceHandle: source
-      target: '1727777093099'
+      target: '1742655632996'
       targetHandle: target
       type: custom
       zIndex: 0
     - data:
         isInIteration: false
+        isInLoop: false
         sourceType: http-request
         targetType: end
-      id: 1727777093099-source-1727777140663-target
-      source: '1727777093099'
+      id: 1742655632996-source-1742655661421-target
+      source: '1742655632996'
       sourceHandle: source
-      target: '1727777140663'
+      target: '1742655661421'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -64,13 +88,13 @@ workflow:
         type: start
         variables:
         - label: content
-          max_length: 5000
+          max_length: 4800
           options: []
           required: true
           type: paragraph
           variable: content
-      height: 89
-      id: '1727777089284'
+      height: 80
+      id: '1742655610698'
       position:
         x: 80
         y: 282
@@ -87,23 +111,31 @@ workflow:
           config: null
           type: no-auth
         body:
-          data: '{{#1727777089284.content#}}'
+          data:
+          - id: key-value-1
+            key: ''
+            type: text
+            value: '{{#1742655610698.content#}}'
           type: raw-text
         desc: ''
         headers: ''
         method: post
         params: ''
-        selected: true
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
         timeout:
           max_connect_timeout: 0
           max_read_timeout: 0
           max_write_timeout: 0
         title: HTTP 请求
         type: http-request
-        url: http://mermaid-flask-service:5002/upload
+        url: http://markmap-flask-service:5003/upload
         variables: []
-      height: 105
-      id: '1727777093099'
+      height: 125
+      id: '1742655632996'
       position:
         x: 384
         y: 282
@@ -119,26 +151,25 @@ workflow:
         desc: ''
         outputs:
         - value_selector:
-          - '1727777093099'
+          - '1742655632996'
           - body
-          variable: body
+          variable: result
         selected: false
         title: 结束
         type: end
-      height: 89
-      id: '1727777140663'
+      height: 80
+      id: '1742655661421'
       position:
         x: 688
         y: 282
       positionAbsolute:
         x: 688
         y: 282
-      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     viewport:
-      x: -264.5
-      y: 58
+      x: -142
+      y: -61
       zoom: 1
