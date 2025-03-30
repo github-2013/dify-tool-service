@@ -5,7 +5,11 @@ app:
   mode: advanced-chat
   name: 生成word工作流
   use_icon_as_answer_icon: false
-dependencies: []
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/jina_tool:0.0.7@51cf3dfcc4ff002171f2378aa02ec7ce5390ddfe23c02ede532b08f48a75e82c
 kind: app
 version: 0.1.5
 workflow:
@@ -276,6 +280,9 @@ workflow:
         tool_label: 获取单页面
         tool_name: jina_reader
         tool_parameters:
+          request_params:
+            type: mixed
+            value: ''
           url:
             type: mixed
             value: '{{#sys.query#}}'
@@ -409,6 +416,6 @@ workflow:
       type: custom
       width: 244
     viewport:
-      x: -254.27741847906572
-      y: 53.31473365116506
-      zoom: 0.6482986710606825
+      x: -147.40993533616688
+      y: 39.63553371265539
+      zoom: 0.8089250444125116

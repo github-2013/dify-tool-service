@@ -1,0 +1,534 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 获取36氪新闻
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1743150379928-source-1743150391792-target
+      source: '1743150379928'
+      sourceHandle: source
+      target: '1743150391792'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1743150391792-source-1743150575861-target
+      source: '1743150391792'
+      sourceHandle: source
+      target: '1743150575861'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1743150575861-source-1743150685175-target
+      source: '1743150575861'
+      sourceHandle: source
+      target: '1743150685175'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1743150685175-source-1743150786118-target
+      source: '1743150685175'
+      sourceHandle: source
+      target: '1743150786118'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1743150786118'
+        sourceType: iteration-start
+        targetType: template-transform
+      id: 1743150786118start-source-1743150811206-target
+      source: 1743150786118start
+      sourceHandle: source
+      target: '1743150811206'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1743150786118'
+        sourceType: template-transform
+        targetType: http-request
+      id: 1743150811206-source-1743150819533-target
+      source: '1743150811206'
+      sourceHandle: source
+      target: '1743150819533'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1743150786118'
+        sourceType: http-request
+        targetType: llm
+      id: 1743150819533-source-1743150825133-target
+      source: '1743150819533'
+      sourceHandle: source
+      target: '1743150825133'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1743150786118-source-1743151795093-target
+      source: '1743150786118'
+      sourceHandle: source
+      target: '1743151795093'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: end
+      id: 1743151795093-source-1743151840820-target
+      source: '1743151795093'
+      sourceHandle: source
+      target: '1743151840820'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1743150379928'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: https://api.vvhan.com/api/hotlist/36Ke
+        variables: []
+      height: 110
+      id: '1743150391792'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 2fa24a68-6981-4155-a5d9-44191ff3f6d0
+          role: system
+          text: '1、读取抓取的{{#1743150391792.body#}}
+
+            2、取出前 3 条数据
+
+            3、生成如下结构的内容：
+
+                [{
+
+                  "title": "新闻标题",
+
+                  "url": "新闻链接"
+
+                }]
+
+            4、输出不要使用```json 包裹'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1743150575861'
+      position:
+        x: 685
+        y: 282
+      positionAbsolute:
+        x: 685
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\ndef main(arg1: str) -> dict:\n  try:\n    json_object\
+          \ = json.loads(arg1)\n    return {\n      \"result\": json_object\n    }\n\
+          \  except json.JSONDecodeError as e:\n    return {\n      \"result\": None,\n\
+          \      \"error\": f\"Invalid JSON: {str(e)}\"\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[object]
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1743150575861'
+          - text
+          variable: arg1
+      height: 54
+      id: '1743150685175'
+      position:
+        x: 992
+        y: 282
+      positionAbsolute:
+        x: 992
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 243
+        is_parallel: false
+        iterator_selector:
+        - '1743150685175'
+        - result
+        output_selector:
+        - '1743150825133'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1743150786118start
+        title: 迭代获取新闻正文
+        type: iteration
+        width: 996
+      height: 243
+      id: '1743150786118'
+      position:
+        x: 1296
+        y: 282
+      positionAbsolute:
+        x: 1296
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 996
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1743150786118start
+      parentId: '1743150786118'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1320
+        y: 350
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1743150786118'
+        selected: false
+        template: '{{ arg1.url }}'
+        title: 模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1743150786118'
+          - item
+          variable: arg1
+      height: 54
+      id: '1743150811206'
+      parentId: '1743150786118'
+      position:
+        x: 128
+        y: 68
+      positionAbsolute:
+        x: 1424
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1743150786118'
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求 2
+        type: http-request
+        url: https://r.jina.ai/{{#1743150811206.output#}}
+        variables: []
+      height: 112
+      id: '1743150819533'
+      parentId: '1743150786118'
+      position:
+        x: 432
+        y: 68
+      positionAbsolute:
+        x: 1728
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1743150786118'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 607b8975-c259-4167-bbbc-2fc7408c1408
+          role: system
+          text: '1、读取{{#1743150819533.body#}}
+
+            2、取出对应的内容，填充生成如下结构的内容：
+
+            新闻标题
+
+            ============================
+
+            新闻日期
+
+            新闻内容'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1743150825133'
+      parentId: '1743150786118'
+      position:
+        x: 736
+        y: 68
+      positionAbsolute:
+        x: 2032
+        y: 350
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ arg1 | join("\n======\n") }}'
+        title: 模板转换 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1743150786118'
+          - output
+          variable: arg1
+      height: 54
+      id: '1743151795093'
+      position:
+        x: 2352
+        y: 282
+      positionAbsolute:
+        x: 2352
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1743151795093'
+          - output
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1743151840820'
+      position:
+        x: 2656
+        y: 282
+      positionAbsolute:
+        x: 2656
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -2141
+      y: 129
+      zoom: 1
