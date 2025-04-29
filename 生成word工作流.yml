@@ -151,7 +151,7 @@ workflow:
         title: 开始
         type: start
         variables: []
-      height: 48
+      height: 54
       id: '1731983857799'
       position:
         x: -291.15561671978173
@@ -171,7 +171,7 @@ workflow:
         title: 直接回复
         type: answer
         variables: []
-      height: 97
+      height: 104
       id: answer
       position:
         x: 993.8162091333395
@@ -204,7 +204,7 @@ workflow:
           max_retries: 3
           retry_enabled: true
           retry_interval: 100
-        selected: false
+        selected: true
         timeout:
           max_connect_timeout: 0
           max_read_timeout: 0
@@ -213,7 +213,7 @@ workflow:
         type: http-request
         url: http://word-flask-service:15009/generate_doc
         variables: []
-      height: 125
+      height: 135
       id: '1731983864513'
       position:
         x: 737.6716594937594
@@ -247,7 +247,7 @@ workflow:
           - '1732008351857'
           - result
           variable: arg1
-      height: 48
+      height: 54
       id: '1731996306107'
       position:
         x: 483.5316196134879
@@ -287,7 +287,7 @@ workflow:
             type: mixed
             value: '{{#sys.query#}}'
         type: tool
-      height: 262
+      height: 298
       id: '1732002330795'
       position:
         x: -31.94649420054975
@@ -324,7 +324,7 @@ workflow:
           - '1732002330795'
           - text
           variable: arg1
-      height: 48
+      height: 54
       id: '1732002351804'
       position:
         x: 226.68628352103246
@@ -402,7 +402,7 @@ workflow:
           - '1732002330795'
           - text
           variable: json_str
-      height: 48
+      height: 54
       id: '1732008351857'
       position:
         x: 226.68628352103246
@@ -416,6 +416,6 @@ workflow:
       type: custom
       width: 244
     viewport:
-      x: -147.40993533616688
-      y: 39.63553371265539
+      x: 420.5900646638331
+      y: 54.63553371265539
       zoom: 0.8089250444125116
